@@ -1,0 +1,13 @@
+{% block content %}
+    <form action="/otplogin/" method="POST" accept-charset="UTF-8" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+        <fieldset>
+            <label for="otp">OTP</label>
+            <div>
+                <input type="text" id="otp" placeholder="otp" name="otp">
+            </div>
+            <div>
+                <button type="submit">login</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% block content %}
+    <img width="200px" src="/static/{{ qr_file }}">
+    <form action="/registerdevice/" method="POST" accept-charset="UTF-8" enctype="application/x-www-form-urlencoded">{% csrf_token %}
+        <fieldset>
+            <label for="otp">OTP</label>
+            <div>
+                <input type="text" id="otp" placeholder="otp" name="otp">
+            </div>
+            <div>
+                <button type="submit">Register</button>
+            </div>
+            <input id="secret_key" name="secret_key" type="hidden" value="{{ secret_key }}" />
+        </fieldset>
+    </form>
+{% endblock %}
