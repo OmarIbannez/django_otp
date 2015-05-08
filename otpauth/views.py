@@ -11,7 +11,7 @@ import pyotp
 import pyqrcode
 import os
 
-STATIC_DIR = os.path.join(os.getcwd(), "static")
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def register(request):
     if request.method == 'POST':
@@ -75,7 +75,7 @@ def register_device(request):
     key_uri = 'otpauth://totp/appname:'+username+'?secret='+secret_key+'&issuer=appname'
     qr = pyqrcode.create(key_uri)
     qr_name = secret_key+'.svg'
-    qr_file = STATIC_DIR+'/'+qr_name
+    qr_file = os.path.join(BASE_DIR, 'static')+'/'+qr_name
     qr.svg(qr_file)
 
     return render_to_response('register_device.html', {'qr_file':qr_name, 'secret_key': secret_key}, context_instance=RequestContext(request))
